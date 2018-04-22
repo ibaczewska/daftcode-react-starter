@@ -4,7 +4,6 @@ import Home from './view/Home';
 import Input from './components/Input';
 import Button from './components/Button';
 import Display from './components/Display';
-import Clock from './components/Clock';
 
 
 import './styles/theme.sass';
@@ -35,7 +34,8 @@ class App extends React.Component { // eslint-disable-line react/prefer-stateles
       restartButton: 'Restart',
       displayedTimer: '00:00',
       message: 'Go!',
-      buttonClass: 'btn-info'
+      buttonClass: 'btn-info',   
+      containerColor: 'start' 
     };
 
     
@@ -56,7 +56,8 @@ class App extends React.Component { // eslint-disable-line react/prefer-stateles
     this.setState({displayedTimer: '00:00'});
     this.setState({startStopButton: 'Start'});
     this.setState({buttonClass:'btn-info'});
-    this.setState({message:'Restart timer successful'});
+    this.setState({message:'Restarting timer was successful'});
+    this.setState({containerColor: 'start'});
   }
 
   startStopTimer = () => {
@@ -96,6 +97,7 @@ class App extends React.Component { // eslint-disable-line react/prefer-stateles
           });
         } else {
           this.setState({message: 'Finished!'});
+          this.setState({containerColor: 'finished'})
           return;
         }
       }.bind(this), 1000);
@@ -106,17 +108,16 @@ class App extends React.Component { // eslint-disable-line react/prefer-stateles
       this.setState({buttonClass:'btn-info'});
   }
 }
-  
+
   render() {
    
-    const { startState, stopState,  startStopButton, restartButton, displayedTimer, message, buttonClass } = this.state;
+    const { startState, stopState,  startStopButton, restartButton, displayedTimer, message, buttonClass, containerColor } = this.state;
  
     return (
       
-      <main>
-        <Clock/>
+      <main className = {`container ${containerColor}`}>
         <Home username="DaftCoder" />
-        <div className="container">
+        <div>
             <div className="row">
               <Input inputLabelText='from' inputPlaceholder='start value' inputValue={startState} inputFunction={this.handleChangeFrom} />
             </div>

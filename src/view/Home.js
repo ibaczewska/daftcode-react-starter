@@ -7,7 +7,6 @@ import './Home.sass';
 
 
 class Home extends React.Component {
-  
 
   static propTypes = { 
     username: PropTypes.string.isRequired,
@@ -15,18 +14,18 @@ class Home extends React.Component {
 
     
   render() {
-
-   
+  
     const { username } = this.props;
 
+
     return (
-      <div className="container">
+      
         <div className="row">
           <h2 className="welcome" style={{marginBottom: '30px'}}>
-            <span className="username">Hello {`: ${username}`}</span>
+            <span className="username">Hello {`${username}`}</span>
           </h2>
         </div>
-      </div>
+     
     );
   }
 }
